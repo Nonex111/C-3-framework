@@ -1,3 +1,15 @@
+##### The project is from https://github.com/gjy3035/C-3-Framework.
+
+Fixed some bugs to make it runnable.
+
+
+
+Original readme is shown below.
+
+------
+
+
+
 # **C**rowd **C**ounting **C**ode Framework (C^3-Framework) 
 
 # Python 3 dev version!
