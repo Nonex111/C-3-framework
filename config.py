@@ -25,7 +25,7 @@ __C.NET = 'VGG' # net selection: MCNN, AlexNet, VGG, VGG_DECODER, Res50, CSRNet,
 __C.PRE_GCC = False # use the pretrained model on GCC dataset
 __C.PRE_GCC_MODEL = 'path to model' # path to model
 
-__C.RESUME = True # contine training
+__C.RESUME = False # contine training
 __C.RESUME_PATH = './exp/12-18_22-02_SHHB_VGG_1e-05/latest_state.pth' #
 
 __C.GPU_ID = [0] # sigle gpu: [0], [1] ...; multi gpus: [0,1]
