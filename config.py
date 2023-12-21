@@ -7,7 +7,7 @@ import torch
 __C = edict()
 cfg = __C
 
-__C.PLATFORM = 'local'
+__C.PLATFORM = 'kaggle'
 
 # EXP_PATH: the path of logs, checkpoints, and current codes
 if __C.PLATFORM == 'local':
