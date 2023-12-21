@@ -7,6 +7,16 @@ import torch
 __C = edict()
 cfg = __C
 
+__C.PLATFORM = 'local'
+
+# EXP_PATH: the path of logs, checkpoints, and current codes
+if __C.PLATFORM == 'local':
+	__C.EXP_PATH = './exp'
+elif __C.PLATFORM == 'colab':
+	__C.EXP_PATH = '/content/drive/My Drive/Checkpoint/C^3 Framework/exp'
+elif __C.PLATFORM == 'kaggle':
+	__C.EXP_PATH = '/kaggle/working/Checkpoint/C^3 Framework/exp'
+
 #------------------------------TRAIN------------------------
 __C.SEED = 3035 # random seed,  for reproduction		# 3407 is all you need?
 __C.DATASET = 'SHHB' # dataset selection: GCC, SHHA, SHHB, UCF50, QNRF, WE, Mall, UCSD
@@ -26,7 +36,7 @@ __C.PRE_GCC = False # use the pretrained model on GCC dataset
 __C.PRE_GCC_MODEL = 'path to model' # path to model
 
 __C.RESUME = False # contine training
-__C.RESUME_PATH = './exp/12-18_22-02_SHHB_VGG_1e-05/latest_state.pth' #
+__C.RESUME_PATH = os.path.join(__C.EXP_PATH, '12-18_22-02_SHHB_VGG_1e-05/latest_state.pth')
 
 __C.GPU_ID = [0] # sigle gpu: [0], [1] ...; multi gpus: [0,1]
 
@@ -58,8 +68,7 @@ if __C.DATASET == 'UCF50':
 if __C.DATASET == 'GCC':
 	__C.EXP_NAME += '_' + __C.VAL_MODE
 
-# the path of logs, checkpoints, and current codes
-__C.EXP_PATH = '/content/drive/My Drive/Checkpoint/C^3 Framework/exp'
+
 
 
 
