@@ -15,7 +15,7 @@ if __C.PLATFORM == 'local':
 elif __C.PLATFORM == 'colab':
 	__C.EXP_PATH = '/content/drive/My Drive/Checkpoint/C^3 Framework/exp'
 elif __C.PLATFORM == 'kaggle':
-	__C.EXP_PATH = '/kaggle/working/Checkpoint/C^3 Framework/exp'
+	__C.EXP_PATH = '/kaggle/working/Checkpoint/C^3Framework/exp'
 
 #------------------------------TRAIN------------------------
 __C.SEED = 3035 # random seed,  for reproduction		# 3407 is all you need?
