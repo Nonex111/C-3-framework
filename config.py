@@ -30,7 +30,7 @@ if __C.DATASET == 'GCC':# only for GCC
 	__C.VAL_MODE = cfg_data.VAL_MODE 
 
 
-__C.NET = 'VGG' # net selection: MCNN, AlexNet, VGG, VGG_DECODER, Res50, CSRNet, SANet,Res101_SFCN
+__C.NET = 'MCNN' # net selection: MCNN, AlexNet, VGG, VGG_DECODER, Res50, CSRNet, SANet,Res101_SFCN
 
 __C.PRE_GCC = False # use the pretrained model on GCC dataset
 __C.PRE_GCC_MODEL = 'path to model' # path to model
