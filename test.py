@@ -18,7 +18,12 @@ from PIL import Image, ImageOps
 torch.cuda.set_device(0)
 torch.backends.cudnn.benchmark = True
 
-exp_name = '../SHHB_results'
+exp_name = '../TestResults/SHHB_results/VGG'
+dataRoot = '../ProcessedData/shanghaitech_part_B/test_data'
+model_path = './exp/12-18_22-02_SHHB_VGG_1e-05/all_ep_73_mae_9.5_mse_14.1.pth'
+# latest_state.pth
+# './exp/12-22_11-43_SHHB_MCNN_1e-05/all_ep_192_mae_38.0_mse_59.6.pth'
+
 if not os.path.exists(exp_name):
     os.mkdir(exp_name)
 
@@ -39,9 +44,7 @@ restore = standard_transforms.Compose([
     ])
 pil_to_tensor = standard_transforms.ToTensor()
 
-dataRoot = '../ProcessedData/shanghaitech_part_B/test'
 
-model_path = 'xxx.pth'
 
 def main():
     
@@ -64,12 +67,11 @@ def test(file_list, model_path):
     preds = []
 
     for filename in file_list:
-    	print( filename )
+        print(filename)
         imgname = dataRoot + '/img/' + filename
         filename_no_ext = filename.split('.')[0]
 
         denname = dataRoot + '/den/' + filename_no_ext + '.csv'
-
         den = pd.read_csv(denname, sep=',',header=None).values
         den = den.astype(np.float32, copy=False)
 
@@ -141,6 +143,26 @@ def test(file_list, model_path):
         diff_frame.spines['right'].set_visible(False) 
         plt.savefig(exp_name+'/'+filename_no_ext+'_diff.png',\
             bbox_inches='tight',pad_inches=0,dpi=150)
+
+        # concatenate images, gt, pred, diff in one single image and save it
+        plt.subplot(2,2,1)
+        #plt.imshow(np.transpose(img_transform(restore(img[0])), (1, 2, 0)))
+        plt.imshow(Image.open(imgname).convert('RGB'), 'jet')
+        plt.subplot(2,2,2)
+        plt.imshow(den, 'jet')
+        plt.colorbar()
+        plt.subplot(2,2,3)
+        plt.imshow(pred_map, 'jet')
+        plt.colorbar()
+        plt.subplot(2,2,4)
+        plt.imshow(diff, 'jet')
+        plt.colorbar()
+        plt.savefig(exp_name+'/'+filename_no_ext+'_concat.png',\
+            bbox_inches='tight',pad_inches=0,dpi=150)
+
+
+        
+
 
         plt.close()
 

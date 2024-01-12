@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 
-
+# integrated the Conv2d from pytorch, Batch Norm and ReLU squentially
 class Conv2d(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size, stride=1, NL='relu', same_padding=False, bn=False, dilation=1):
         super(Conv2d, self).__init__()
